@@ -1,6 +1,6 @@
 ################################# Basic configuration #########################
 # Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
-baseURL = "https://products.groupdocs.cloud"
+baseURL = "https://products-qa.groupdocs.cloud"
 title = "Document Automation REST APIs | GroupDocs Cloud"
 theme = "airspace-hugo"
 # Number of posts per page in list view
@@ -49,3 +49,22 @@ languageName = "English"
 languageCode = "en-US"
 contentDir = "content/english"
 weight = 1
+
+[deployment]
+
+[[deployment.targets]]
+name = "Home"
+URL = "s3://products-qa.groupdocs.cloud/?region=us-west-2"
+
+[[deployment.targets]]
+name = "metadata"
+URL = "s3://products-qa.groupdocs.cloud/?prefix=metadata/&region=us-west-2"
+
+[[deployment.matchers]]
+# Set custom content type for /sitemap.xml
+#pattern = "^sitemap\\.xml$"
+#pattern = "^[a-z]\\.xml$"
+pattern = "^.+\\.(xml)$"
+contentType = "application/xml"
+gzip = true
+force = true
